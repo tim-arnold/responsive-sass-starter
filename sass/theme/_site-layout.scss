@@ -1,0 +1,128 @@
+$staticSiteWidth:				960px;//max width of site (#site-header, #layout, #site-footer)
+//Responsive Calculations; Plug in measurements from the PSD here
+$colOneWidth:				percentage(150px / $staticSiteWidth);//width of #colone (Don't include margins betwen columns)
+$colTwoWidth:				percentage(660px / $staticSiteWidth);//width of #coltwo (IMPORTANT: include margin between columns in this measurement!!!  They get subtracted below.)
+$colThreeWidth:				percentage(150px / $staticSiteWidth);//width of #colthree (Don't include margins betwen columns)
+$colMargin:					percentage(50px / $staticSiteWidth);//only used for page layout columns, does not affect widths of columns
+//Fixed site (but why?)
+/*
+$siteWidth:					$staticSiteWidth;
+$colOneWidth:				$staticColOneWidth;
+$colTwoWidth:				$staticContentWidth;
+$colThreeWidth:				$staticColThreeWidth;
+$colMargin:					$staticColMargin/;
+*/
+
+// The Big Containers
+//Let the main containers go full width and use the .wrapper div withing each to restrict max-width on.  This will let you have full width backgrounds on each.
+//Also, other fullwidth elements within each can go outside the .wrapper (herospace type stuff)
+#site-header > .wrapper,
+#nav-primary > ul,
+#layout > .wrapper,
+#site-footer > .wrapper{//don't refer to <header> or <footer> elements because they don't only occur as main site header and footer
+	max-width: $staticSiteWidth;
+	margin: 0 auto;
+	clear: both;
+}
+//inside #layout, the columns
+#colone,
+#coltwo,
+#colthree{//float all the columns (desktop first)
+	float: left;
+}
+//#coltwo is the trick.  depending on coldesc classes on #layout, widths and margins between columns change
+#coltwo{//always present, main content goes in here, assumes three col layout (.coldesc-one-two-three)
+	width: $colTwoWidth;
+	> .wrapper{
+		margin: 0 $colMargin;//here's that margin
+	}	
+	.coldesc-two &{//if .coldesc-two is a parent of #coltwo
+		width: $siteWidth;//full width #coltwo
+		> .wrapper{
+			margin: 0;//no margins, only one column!
+		}
+	}
+	.coldesc-one-two &{//if .coldesc-one-two is a parent of #coltwo then #colthree is not present
+		width: $colTwoWidth + $colThreeWidth;//add the width of the missing #colthree to #coltwo
+		> .wrapper{
+			margin: 0 0 0 $colMargin;//margin only on the left of #coltwo
+		}
+	}
+	.coldesc-two-three &{//if .coldesc-two-three is a parent of #coltwo then #colone is not present
+		width: $colTwoWidth + $colOneWidth;//add the width of the missing #colone to #coltwo
+		> .wrapper{
+			margin: 0 $colMargin 0 0;//margin only on the right of #coltwo
+		}
+	}
+}
+#colone{//right sidebar in desktop view
+	width: $colOneWidth;
+}
+#colthree{//right sidebar in desktop view
+	width: $colThreeWidth;
+}
+//==|== tablet, sort of
+@media only screen and (max-width: 1000px){
+	#site-header .wrapper,
+	#nav-primary ul,
+	#layout .wrapper,
+	#site-footer .wrapper{
+		width: 100%;
+	}
+	#colthree{//drop #colthree to bottom
+		float: none;
+		clear: both;
+		width: 100%;
+	}
+	#coltwo{
+		width: $colTwoWidth + $colThreeWidth;//add the width of the missing #colthree to #coltwo
+	}
+}
+//==|== handheld media queries
+@media only screen and (max-width: 800px){
+	#coltwo,
+	.coldesc-one-two #coltwo,
+	.coldesc-two #coltwo,
+	.coldesc-two-three #coltwo,
+	#colthree,
+	.coldesc-two-three #colthree{
+		width: 100%;
+		float: none;
+		clear: both;
+		padding: 2em 0;
+		margin: 0;
+	}
+	.full-frontpage{
+		#colone,
+		#coltwo{
+			clear: both;
+			width: 100%;
+			.wrapper{
+				padding: 0;
+			}
+		}
+	}
+}
+//==|== smaller handheld media queries ==|==
+@media only screen and (max-width: 600px){	
+	#colone,
+	.coldesc-one-two #colone{
+		width: 100%;
+		float: none;
+		clear: both;
+		margin: 0;
+	}
+	.object-left,.object-right{
+		float: none;
+		max-width: 100%;
+	}
+	img{
+		max-width: 100%;
+		height: auto;
+	}
+}
+
+//==|== tiny handheld media queries ==|==
+@media only screen and (max-width: 480px){
+
+}

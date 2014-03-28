@@ -1,0 +1,14 @@
+//Import compass libraries
+@import "compass";
+@import "modules/normalize";
+
+// Core variables and mixins
+//@import "mixins/yourmixin";
+
+// modules: Misc
+//@import "modules/modulename";
+
+//Main theme
+@import "theme/site-layout"; //The big containers.  No colors or fonts.
+@import "theme/html-elements";
+@import "theme/theme-main"; //Make the pretty!

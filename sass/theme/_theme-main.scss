@@ -1,0 +1,262 @@
+//placeholders (use @extend where necessary: li {@extend %no-bullets})
+%page-width{
+	max-width: $staticSiteWidth;
+	margin: 0 auto;
+	clear: both;
+}
+.page-width{
+	@extend %page-width;
+}
+%no-bullets{
+	margin: 0; 
+	padding: 0;
+	list-style-type: none;
+	background-image: none;//for sites where the bullet has ben set using bgimage
+	li{
+		background-image: none;
+		padding-left: 0;
+	}
+}
+.no-bullets{
+	@extend %no-bullets;
+}
+//Sitewide thingys
+.button{
+	
+}
+.date,
+.attribute-publish_date,
+.attribute-display-date{
+	color: #a1a1a1;
+	text-transform: uppercase;
+}
+// control states (default is no class)
+.active{}// if you're thinking .on or .current, then .active is your class!
+.inactive{}// available but not active
+.disabled{}// visible, but not available to be active
+.hidden{display: none; visibility: hidden;} //duh
+.highlighted{}
+.error{color: #f00;}
+
+//Theme
+html,body{
+	height: 100%;
+	margin: 0;
+}
+body{
+	font-family: verdana,sans-serif;
+	color: #444;
+	font-size: 1em;
+	line-height: 1.3;
+	background: #fff;
+}
+#{headings()} {//auto-generate base styles for all Hn styles
+	margin: 0 0 0.5em 0;
+	font-weight: 600;
+}
+h1,h2{
+	&.page-title{
+
+	}
+}
+ul{
+	margin: 0 0 1em 0;
+	padding: 0;
+	list-style-type: none;
+	li{
+		padding-left: 22px;
+		background: transparent url(../images/icn-listitem.png) 0 50% no-repeat;
+		margin-bottom: .4em;
+	}
+}
+a{
+	
+}
+a:hover, a:active{
+	outline: none;
+}
+a:hover{
+
+}
+.more{
+
+}
+/* Smartphone resets and enhancements */
+a:link, a:hover, a:active {
+	-webkit-tap-highlight-color:rbga(0,0,0,0); outline:none; /* prevents pink highlight color on tap */
+}
+span {
+	-webkit-transform: translateZ(0); /* enables on GPU processing */
+}
+input:required, input:invalid {box-shadow:none;}
+
+#site-header{
+	overflow: auto;
+}
+#site-logo{
+	float: left;
+	img{
+
+	}
+}
+#site-search{
+
+	form{
+
+	}
+	input{
+
+	}
+	button{
+
+	}
+}
+.nav-utility{
+	float: right;
+	ul{
+		overflow: auto;
+		@extend %no-bullets;
+		li{
+			float: left;
+		}
+	}
+}
+#nav-primary{
+	ul{
+		@extend %no-bullets;
+		li{
+			float: left;
+			a{
+				display: block;
+				position: relative;
+				z-index: 500;
+			}
+			:hover,
+			&.sfHover{
+				ul{
+					display: block;
+				}
+			}
+		}
+		ul{
+			width: auto;
+			display: none;
+			overflow: auto;
+			li{
+				a{
+					display: block;
+					white-space: nowrap;
+				}
+			}
+		}
+	}
+}
+//Left nav styles based on ids and classes baked in to eZ builds
+#nav-secondary {
+	ul{
+		@extend %no-bullets;
+	}
+}
+#subnav{
+	> .active{
+		&.hasChildren{
+
+		}
+	}
+}
+#subnav_0{
+
+}
+#subnav_1{
+	
+}
+.social{
+	overflow: auto;
+	@extend %no-bullets;
+	li{
+		float: left;
+	}
+}
+
+//Subpage specific styles
+.layout-subpage{
+
+}
+//Full, Block, Block Item, and  Line
+//Start styling the default view and only break into specific views when necessary
+.content-view-full {
+	h1{
+
+	}
+	img{
+
+	}
+}
+.content-view-block{
+
+}
+.content-view-block_item{
+
+}
+.content-view-line{
+
+}
+.content-view-ezfind_line{
+
+}
+//content type specific views will already have the defaults from above
+//NEWS
+.full-news{
+
+}
+.block-news{
+
+}
+.block_item-news{
+
+}
+.line-news{
+	.date{
+
+	}
+	.event-info{
+
+	}
+}
+//EVENTS
+.full-event {
+
+}
+.block-event{
+
+}
+.block_item-event{
+
+}
+.line-event{
+
+}
+//Embed file styles
+.embed-file {
+
+}
+.addthis_toolbox{
+
+}
+
+//Search Results (EZ search results)
+.content-search{
+	
+}
+#search_controls {
+	float: none;
+	margin-right: 0;
+	width: auto !important;
+	#facet-list{
+		@extend %no-bullets;
+	}
+}
+//Footer
+#site-footer{
+
+}
